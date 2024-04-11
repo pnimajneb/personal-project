@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Satoshi';
+    src: url('/public/fonts/Satoshi-Regular.woff2') format('woff2'),
+         url('/public/fonts/Satoshi-Regular.woff') format('woff');
+         /* url('/public/fonts/Satoshi-Bold.woff2') format('woff2'),
+         url('/public/fonts/Satoshi-Bold.woff') format('woff'); */
+    font-weight: 400, 500, ; /* Adjust as necessary */
+    font-style: normal; /* Adjust as necessary */
+  }
+  
