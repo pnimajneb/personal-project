@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
-import TicketList from "./TicketList";
+import TicketList from "./MessageList";
 import Loading from "../loading";
+import MessageList from "./MessageList";
 
-function Tickets() {
+function Messages() {
   return (
     <main>
       <nav>
@@ -15,10 +16,10 @@ function Tickets() {
       </nav>
 
       <Suspense fallback={<Loading />}>
-        <TicketList />
+        <MessageList />
       </Suspense>
     </main>
   );
 }
 
-export default Tickets;
+export default Messages;

@@ -2,7 +2,7 @@
 "use client";
 
 import { useRouter } from "next/router";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -22,7 +22,7 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 
 export function CreateForm() {
-  const router = useRouter();
+  // const router = useRouter();
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -34,23 +34,20 @@ export function CreateForm() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onHandleSubmit = async (formData: FormSchemaType) => {
     setIsLoading(true);
 
-    // const message = {
-    //   title,
-    // };
+    const message = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
 
-    const res = await fetch("http://localhost:4000/tickets", {
+    const res = await fetch("http://localhost:4000/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
     });
-
-    if (res.status === 201) {
-      router.push("/tickets");
-    }
   };
 
   return (

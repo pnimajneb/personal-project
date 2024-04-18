@@ -16,7 +16,7 @@ function Navbar() {
         />
         <h1>PersonalPage</h1>
         <Link href="/">Dashboard</Link>
-        <Link href="/tickets">Tickets</Link>
+        <Link href="/messages">Messages</Link>
       </nav>
     </div>
   );

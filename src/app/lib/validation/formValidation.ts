@@ -10,7 +10,7 @@ export const FormSchema = z.object({
     .email({ message: "Please enter a valid email address." }),
     message: z
     .string()
-    .min(50, { message: 'Message must have 50 characters at least'})
+    .min(10, { message: 'Message must have 10 characters at least'})
     .max(10000, { message: 'Message can not contain more than 10000 characters'})
 })
 
