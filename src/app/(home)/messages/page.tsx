@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import TicketList from "./MessageList";
-import Loading from "../loading";
+import Loading from "../../loading";
 import MessageList from "./MessageList";
 
 function Messages() {
