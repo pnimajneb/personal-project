@@ -1,7 +1,7 @@
 // needs hydrating in the browser with javascript
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +22,7 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 
 export function CreateForm() {
-  // const router = useRouter();
+  const router = useRouter();
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -48,6 +48,8 @@ export function CreateForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
     });
+
+    router.push("/messages");
   };
 
   return (
