@@ -65,6 +65,18 @@
       "email": "NEW@email.de",
       "message": "NEW GET message",
       "id": "123"
+    },
+    {
+      "name": "testing a new message",
+      "email": "testing@email.com",
+      "message": "bla bla bla",
+      "id": "hym-7wF"
+    },
+    {
+      "name": "NEW ONE",
+      "email": "newone@email.com",
+      "message": "new new new",
+      "id": "K6eJFo5"
     }
   ]
 }
