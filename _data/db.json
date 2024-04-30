@@ -53,6 +53,18 @@
       "email": "test@email.de",
       "message": "about test message",
       "id": "UIOBHr8"
+    },
+    {
+      "name": "GET",
+      "email": "get@email.de",
+      "message": "about GET message",
+      "id": "123"
+    },
+    {
+      "name": "NEW",
+      "email": "NEW@email.de",
+      "message": "NEW GET message",
+      "id": "123"
     }
   ]
 }

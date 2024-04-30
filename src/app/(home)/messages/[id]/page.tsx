@@ -4,16 +4,16 @@ import { notFound } from "next/navigation";
 
 export const dynamicParams = true;
 
-export async function generateMetadata({ params }: SingleMessagePageProps) {
-  const id = params.id;
+// export async function generateMetadata({ params }: SingleMessagePageProps) {
+//   const id = params.id;
 
-  const res = await fetch(`http://localhost:4000/messages/${id}`);
-  const message = await res.json();
+//   const res = await fetch(`http://localhost:4000/messages/${id}`);
+//   const message = await res.json();
 
-  return {
-    title: `Personal Page | ${message.name}`,
-  };
-}
+//   return {
+//     title: `Personal Page | ${message.name}`,
+//   };
+// }
 
 export async function generateStaticParams(): Promise<{ id: number }[]> {
   const res = await fetch("http://localhost:4000/messages/");
