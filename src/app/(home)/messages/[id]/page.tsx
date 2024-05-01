@@ -35,7 +35,7 @@ async function getMessage(id: number): Promise<Message> {
   return res.json();
 }
 
-type SingleMessagePageProps = {
+export type SingleMessagePageProps = {
   params: {
     id: number;
   };
