@@ -20,6 +20,7 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
+import { error } from "console";
 
 export function CreateForm() {
   const router = useRouter();
@@ -43,13 +44,25 @@ export function CreateForm() {
       message: formData.message,
     };
 
-    const res = await fetch("http://localhost:4000/messages", {
+    // sending the stuff to the route handler
+    const res = await fetch("http://localhost:3000/api/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
     });
 
-    router.push("/messages");
+    const json = await res.json();
+
+    if (json.error) {
+      console.log(error.message);
+    }
+
+    if (json.data) {
+      router.refresh();
+      router.push("/messages");
+    }
+    // TODO - possibly delete this line - depending on where the user needs to be pished after sending a message successfully
+    // router.push("/messages");
   };
 
   return (

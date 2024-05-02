@@ -1,32 +1,31 @@
+import { createClient } from "@supabase/supabase-js"
 import { NextRequest, NextResponse } from "next/server"
 
-
-// GET requests work dynamically in nextjs - no need to force a dynamic handling
-export async function GET() {
-    const res = await fetch('http://localhost:4000/messages/')
-
-    const messages = await res.json()
-
-    return NextResponse.json(messages, {
-        status: 200
-    })
+// ensure that environment variables are set
+if(!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    throw new Error ("Supabase URL or Anon Key is missing in environment variables")
 }
+
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
 export async function POST(request: NextRequest) {
     const message = await request.json()
+    
+   // Insert the data
+   const { data, error } = await supabase.from('messages').insert([message]);
 
-    const res = await fetch("http://localhost:4000/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(message),
-      })
+   if (error) {
+       return new Response(JSON.stringify({ error: error.message }), {
+           status: 500,
+           headers: {'Content-Type': 'application/json'}
+       });
+   }
 
-      // of course, all of this is redundant - just working on it to understand the way POST requests work and how to use the request object to use the json data
-      // here it sends me back the new ticket, it also has the id on it that the json server creates for me
-      // i can now handle the post request and i can try this from the json server via postman!
-      const newMessage = await res.json()
-
-      return NextResponse.json(newMessage, {
-        status: 201
-      })
+   return new Response(JSON.stringify({ data }), {
+       status: 200,
+       headers: {'Content-Type': 'application/json'}
+   });
 }
