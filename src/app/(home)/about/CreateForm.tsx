@@ -20,7 +20,6 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
-import { error } from "console";
 
 export function CreateForm() {
   const router = useRouter();
@@ -45,7 +44,7 @@ export function CreateForm() {
     };
 
     // sending the stuff to the route handler
-    const res = await fetch("http://localhost:3000/api/messages", {
+    const res = await fetch("http://localhost:3001/api/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
@@ -74,7 +73,7 @@ export function CreateForm() {
             name="name"
             render={({ field }) => (
               <FormItem className="mt-4">
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Your Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Your Name" {...field} />
                 </FormControl>
@@ -87,7 +86,7 @@ export function CreateForm() {
             name="email"
             render={({ field }) => (
               <FormItem className="mt-4">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Your Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Your Email" {...field} />
                 </FormControl>
@@ -100,7 +99,7 @@ export function CreateForm() {
             name="message"
             render={({ field }) => (
               <FormItem className="mt-4">
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Your Message</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="What's on your mind?"
