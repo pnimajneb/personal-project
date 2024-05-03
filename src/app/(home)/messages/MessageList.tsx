@@ -11,7 +11,7 @@ export type Message = {
 async function getMessages(): Promise<Message[]> {
   // imitate delay
   // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const res = await fetch("http://localhost:4000/messages", {
+  const res = await fetch("http://localhost:3001/messages", {
     next: {
       revalidate: 0,
     },

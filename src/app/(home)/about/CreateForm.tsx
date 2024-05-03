@@ -37,31 +37,35 @@ export function CreateForm() {
   const onHandleSubmit = async (formData: FormSchemaType) => {
     setIsLoading(true);
 
-    const message = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    };
+    try {
+      const message = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      };
 
-    // sending the stuff to the route handler
-    const res = await fetch("http://localhost:3001/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(message),
-    });
+      // sending the stuff to the route handler
+      const res = await fetch("api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(message),
+      });
 
-    const json = await res.json();
+      const json = await res.json();
 
-    if (json.error) {
-      console.log(error.message);
+      if (res.ok) {
+        form.reset(); // resets the form to the inital state
+        alert("Message sent successfully!");
+      } else {
+        console.error("Error sending message:", json.error);
+        alert(`Error: ${json.error}`);
+      }
+    } catch (error) {
+      console.error("Network or other error:", error);
+      alert("Failed to send message due to a network or other error.");
+    } finally {
+      setIsLoading(false);
     }
-
-    if (json.data) {
-      router.refresh();
-      router.push("/messages");
-    }
-    // TODO - possibly delete this line - depending on where the user needs to be pished after sending a message successfully
-    // router.push("/messages");
   };
 
   return (

@@ -16,7 +16,7 @@ export const dynamicParams = true;
 // }
 
 export async function generateStaticParams(): Promise<{ id: number }[]> {
-  const res = await fetch("http://localhost:4000/messages/");
+  const res = await fetch("http://localhost:3001/messages/");
 
   const messages: Message[] = await res.json();
 
