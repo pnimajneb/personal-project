@@ -20,10 +20,11 @@ export async function POST(request: NextRequest) {
     const message = await request.json()
     
    // Insert the data into Supabase
-   const { data, error } = await supabase.from('messages').insert([message]);
+   const { error } = await supabase.from('messages').insert([message]);
 
    if (error) {
-       return new Response(JSON.stringify({ error: error.message }), {
+    console.error('Database operation failed:', error)
+       return new Response(JSON.stringify({ error: "Failed to insert data into database", details: error.message }), {
            status: 500,
            headers: {'Content-Type': 'application/json'}
        });
@@ -59,7 +60,7 @@ try {
     if (emailError.response) {
         console.error(emailError.response.body)
     }
-
+    
    return new Response(JSON.stringify({ error: "Failed to send email", details: emailError.response.body }), {
        status: 500,
        headers: {'Content-Type': 'application/json'}
