@@ -29,7 +29,8 @@ export async function POST(request: NextRequest) {
        });
    }
 
-   const email = {
+   // send email to site owner
+   const emailToOwner = {
     to: 'bpeters@posteo.de',
     from: 'bpeters@posteo.de',
     subject: 'New Message Received',
@@ -37,17 +38,31 @@ export async function POST(request: NextRequest) {
     html: `<strong>Name:</strong> ${message.name}<br><strong>Email:</strong> ${message.email}<br><strong>Message:</strong> ${message.message}`,
    };
 
-   try {
-    await sgMail.send(email)
-   } catch (emailError: unknown) { // specify the type as unknown
-    console.error('Failed to send email');
-    if (emailError instanceof Error) {
-        console.error(emailError.message)
-    }
+   // send confirmation email to site user
+   const confirmationEmail = {
+    to: message.email, // the user's mail
+    from: 'bpeters@posteo.de',
+    subject: 'Your message has been received',
+    text: `Hello ${message.name},\n\nThank you for your message! We have received your message and will get back to you shortly.\n\nBest regards,\nYour Name`,
+    html: `<p>Hello ${message.name},</p><p>Thank you for your message! We have received your message and will get back to you shortly.</p><p>Best regards,<br>Your Name</p>`,
    }
 
-   return new Response(JSON.stringify({ data }), {
-       status: 200,
+try {
+    await sgMail.send(emailToOwner)
+    await sgMail.send(confirmationEmail)
+    return new Response(JSON.stringify({ data: "Emails sent successfully"}), {
+        status: 200,
+        headers: {'Content-Type': 'application/json'}
+    })
+} catch (emailError: any) { // specify the type as any
+    console.error('Failed to send email', emailError);
+    if (emailError.response) {
+        console.error(emailError.response.body)
+    }
+
+   return new Response(JSON.stringify({ error: "Failed to send email", details: emailError.response.body }), {
+       status: 500,
        headers: {'Content-Type': 'application/json'}
    });
+}
 }

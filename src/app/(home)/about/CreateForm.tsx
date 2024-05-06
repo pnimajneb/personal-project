@@ -33,6 +33,7 @@ export function CreateForm() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [messageStatus, setMessageStatus] = useState("");
 
   const onHandleSubmit = async (formData: FormSchemaType) => {
     setIsLoading(true);
@@ -55,7 +56,8 @@ export function CreateForm() {
 
       if (res.ok) {
         form.reset(); // resets the form to the inital state
-        alert("Message sent successfully!");
+        setMessageStatus("Message sent successfully");
+        setTimeout(() => setMessageStatus(""), 5000); // hide message after five seconds
       } else {
         console.error("Error sending message:", json.error);
         alert(`Error: ${json.error}`);
@@ -115,10 +117,18 @@ export function CreateForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="mt-4" disabled={isLoading}>
-            {isLoading && <span>Sending...</span>}
-            {!isLoading && <span>Send Message</span>}
-          </Button>
+          <div className="flex flex-col">
+            <Button
+              size="default"
+              type="submit"
+              className="my-4 w-32"
+              disabled={isLoading}
+            >
+              {isLoading && <span>Sending...</span>}
+              {!isLoading && <span>Send Message</span>}
+            </Button>
+            {messageStatus}
+          </div>
         </form>
       </Form>
     </div>
