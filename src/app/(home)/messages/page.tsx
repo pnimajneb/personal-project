@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import TicketList from "./MessageList";
+import TicketList from "./ImageList";
 import Loading from "../../loading";
-import MessageList from "./MessageList";
+import ImageList from "./ImageList";
 
 function Messages() {
   return (
@@ -16,7 +16,7 @@ function Messages() {
       </nav>
 
       <Suspense fallback={<Loading />}>
-        <MessageList />
+        <ImageList />
       </Suspense>
     </main>
   );

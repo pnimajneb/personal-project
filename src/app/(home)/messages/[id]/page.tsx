@@ -1,5 +1,5 @@
 import React from "react";
-import { Message } from "../MessageList";
+import { Image } from "../ImageList";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
@@ -16,7 +16,7 @@ export const dynamicParams = true;
 //   };
 // }
 
-async function getMessage(id: number): Promise<Message> {
+async function getMessage(id: number): Promise<Image> {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -47,13 +47,8 @@ async function MessageDetails({ params }: SingleMessagePageProps) {
   return (
     <main>
       <nav>
-        <h2>Message Details</h2>
+        <h2>Image Details</h2>
       </nav>
-      <div>
-        <h3>{message.name}</h3>
-        <small>Created by {message.email}</small>
-        <p>{message.message}</p>
-      </div>
     </main>
   );
 }
