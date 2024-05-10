@@ -1,6 +1,7 @@
 import React from "react";
 import { Message } from "../MessageList";
 import { notFound } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamicParams = true;
 
@@ -15,24 +16,23 @@ export const dynamicParams = true;
 //   };
 // }
 
-export async function generateStaticParams(): Promise<{ id: number }[]> {
-  const res = await fetch("http://localhost:3001/messages/");
-
-  const messages: Message[] = await res.json();
-
-  return messages.map((message) => ({
-    id: message.id,
-  }));
-}
-
 async function getMessage(id: number): Promise<Message> {
-  const res = await fetch(`http://localhost:4000/messages/${id}`);
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
-  if (!res.ok) {
+  const { data } = await supabase
+    .from("messages")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (!data) {
     notFound();
   }
 
-  return res.json();
+  return data;
 }
 
 export type SingleMessagePageProps = {

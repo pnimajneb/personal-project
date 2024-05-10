@@ -1,3 +1,4 @@
+import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import React from "react";
 
@@ -9,15 +10,19 @@ export type Message = {
 };
 
 async function getMessages(): Promise<Message[]> {
-  // imitate delay
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const res = await fetch("http://localhost3001/messages", {
-    next: {
-      revalidate: 0,
-    },
-  });
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
-  return res.json();
+  const { data, error } = await supabase.from("messages").select();
+
+  if (error) {
+    console.log(error.message);
+    return [];
+  }
+
+  return data || [];
 }
 
 async function MessageList() {
