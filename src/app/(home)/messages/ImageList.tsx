@@ -9,10 +9,13 @@ export type Image = {
 async function getImages(): Promise<Image[]> {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
   const { data, error } = await supabase.storage.from("photography").list();
+
+  console.log("Fetched data:", data); // Log the data received from Supabase
+  console.log("Error:", error); // Log any errors during the fetch
 
   if (error) {
     console.log(error.message);
@@ -36,13 +39,13 @@ async function getImages(): Promise<Image[]> {
   return images.filter((image): image is Image => image !== null); // Filter out any nulls from errors
 }
 
-async function ImageList() {
+export default async function ImageList() {
   const images = await getImages();
   return (
     <>
       {images.map((image, index) => (
-        <div key={index} className="card my-5">
-          <img src={image.url} alt={image.name} />
+        <div key={index} className="my-5">
+          <img src={image.url} alt="image name" />
         </div>
       ))}
       {images.length === 0 && (
@@ -51,5 +54,3 @@ async function ImageList() {
     </>
   );
 }
-
-export default ImageList;
