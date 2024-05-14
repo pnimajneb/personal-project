@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   FormSchema,
   FormSchemaType,
-} from "@/app/lib/validation/formValidation";
+} from "../../../../lib/validation/formValidation";
 import { Button } from "../../components/ui/button";
 import {
   Form,
