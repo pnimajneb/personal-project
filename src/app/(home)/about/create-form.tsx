@@ -71,10 +71,13 @@ export function CreateForm() {
   };
 
   return (
-    <div className="mr-10 max-w-[400px] w-full">
+    <div className=" mr-10 max-w-[400px] w-full">
       <h2 className="pb-4">GET IN TOUCH</h2>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onHandleSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onHandleSubmit)}
+          className="bg-[#1e293b] border-b-4 border-r-4 border-primary pl-4 pr-8 pb-10 pt-2 rounded-[2px]"
+        >
           <FormField
             control={form.control}
             name="name"
@@ -118,7 +121,7 @@ export function CreateForm() {
               </FormItem>
             )}
           />
-          <div className="flex flex-col text-white">
+          <div className="flex flex-col">
             <Button
               variant="link"
               size="default"
