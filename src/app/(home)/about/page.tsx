@@ -1,12 +1,14 @@
 import React from "react";
-import { CreateForm } from "./CreateForm";
+import { CreateForm } from "./create-form";
+import { Content } from "./content";
 
 function SendMessage() {
   return (
     <main>
-      <h2 className="text-center text-primary">Drop me a message</h2>
-
-      <CreateForm />
+      <div className="flex justify-between">
+        <Content />
+        <CreateForm />
+      </div>
     </main>
   );
 }

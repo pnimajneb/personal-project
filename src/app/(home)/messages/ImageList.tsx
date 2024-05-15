@@ -7,7 +7,7 @@ export default async function ImageList() {
     <>
       {imagesGallery.map(
         (img, index) =>
-          img.name.includes("aboutme") && (
+          img.name.includes("gallery1") && (
             <div key={index} className="my-5">
               <img src={img.url} alt={img.name} />
             </div>

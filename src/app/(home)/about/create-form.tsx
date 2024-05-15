@@ -71,14 +71,15 @@ export function CreateForm() {
   };
 
   return (
-    <div className="flex justify-end">
+    <div className="mr-10 max-w-[400px] w-full">
+      <h2 className="pb-4">GET IN TOUCH</h2>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onHandleSubmit)} className="w-1/2">
+        <form onSubmit={form.handleSubmit(onHandleSubmit)}>
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="mt-4">
+              <FormItem>
                 <FormLabel>Your Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Your Name" {...field} />
@@ -117,15 +118,16 @@ export function CreateForm() {
               </FormItem>
             )}
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-white">
             <Button
+              variant="link"
               size="default"
               type="submit"
               className="my-4 w-32"
               disabled={isLoading}
             >
-              {isLoading && <span>Sending...</span>}
-              {!isLoading && <span>Send Message</span>}
+              {isLoading && <span>SENDING...</span>}
+              {!isLoading && <span>SEND MESSAGE</span>}
             </Button>
             {messageStatus}
           </div>
