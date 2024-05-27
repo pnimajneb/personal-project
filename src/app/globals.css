@@ -10,13 +10,16 @@
 
   body {
     background: #000000;
-    @apply text-white m-8;
+    @apply text-white text-lg;
   }
-  h1, h2 {
-    @apply font-bold text-primary text-lg;
+  h1 {
+    @apply font-bold text-primary text-xl;
+  }
+  h2 {
+    @apply font-bold text-primary text-lg
   }
   main {
-    @apply max-w-5xl my-12 mx-auto px-8;
+    @apply max-w-7xl my-12 mx-auto px-8;
   }
   main > h2 {
     @apply mb-4 pb-2 text-base ;

@@ -8,14 +8,14 @@ export async function Content() {
       {aboutImage.map(
         (img, index) =>
           img.name.includes("aboutme") && (
-            <div key={index} className="grid grid-cols-2 w-[400px]">
+            <div key={index} className="gap-4 grid grid-cols-4 w-[700px]">
               <img
                 className="rounded-[4px] max-w-[200px]"
                 src={img.url}
                 alt={img.name}
               />
-              <h1 className="ml-4">LEA DINGER</h1>
-              <p className="text-[#a0aec0] col-span-2 mt-4">
+              <h1 className="col-start-3 col-end-5">LEA DINGER</h1>
+              <p className="text-[#a0aec0] col-span-4">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
                 commodo ligula eget dolor. Aenean massa. Cum sociis natoque
                 penatibus et magnis dis parturient montes, nascetur ridiculus
