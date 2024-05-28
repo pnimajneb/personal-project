@@ -10,19 +10,16 @@
 
   body {
     background: #000000;
-    @apply text-white text-lg;
+    @apply text-white text-xl leading-loose;
   }
   h1 {
-    @apply font-bold text-primary text-xl;
+    @apply font-bold text-primary text-4xl;
   }
   h2 {
-    @apply font-bold text-primary text-lg
+    @apply font-bold text-primary text-2xl
   }
   main {
-    @apply max-w-7xl my-12 mx-auto px-8;
-  }
-  main > h2 {
-    @apply mb-4 pb-2 text-base ;
+    @apply max-w-[1800px] my-12 mx-auto px-8;
   }
   p > a {
     @apply text-primary underline;

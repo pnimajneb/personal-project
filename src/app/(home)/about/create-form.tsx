@@ -71,21 +71,23 @@ export function CreateForm() {
   };
 
   return (
-    <div className=" mr-10 max-w-[400px] w-full">
-      <h2 className="pb-4">GET IN TOUCH</h2>
+    <div className="min-w-[800px]">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onHandleSubmit)}
-          className="bg-[#1e293b] border-b-4 border-r-4 border-primary pl-4 pr-8 pb-10 pt-2 rounded-[2px]"
+          className="bg-[#0f172a] border-b-4 border-r-4 border-primary pl-16 pr-32 pb-40 pt-8 rounded-[2px]"
         >
+          <h2 className="pb-4">GET IN TOUCH</h2>
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your Name</FormLabel>
+                <FormLabel className="text-xl text-[#a0aec0]">
+                  Your Name
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="Your Name" {...field} />
+                  <Input className="text-xl text-[#a0aec0]" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -96,9 +98,11 @@ export function CreateForm() {
             name="email"
             render={({ field }) => (
               <FormItem className="mt-4">
-                <FormLabel>Your Email</FormLabel>
+                <FormLabel className="text-xl text-[#a0aec0]">
+                  Your Email
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="Your Email" {...field} />
+                  <Input className="text-xl text-[#a0aec0]" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,10 +113,12 @@ export function CreateForm() {
             name="message"
             render={({ field }) => (
               <FormItem className="mt-4">
-                <FormLabel>Your Message</FormLabel>
+                <FormLabel className="text-xl text-[#a0aec0]">
+                  Your Message
+                </FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="What's on your mind?"
+                    className="text-xl text-[#a0aec0]"
                     rows={5}
                     {...field}
                   />
@@ -121,7 +127,7 @@ export function CreateForm() {
               </FormItem>
             )}
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col pl-4">
             <Button
               variant="link"
               size="default"
