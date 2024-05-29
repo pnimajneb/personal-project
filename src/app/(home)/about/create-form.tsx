@@ -71,7 +71,7 @@ export function CreateForm() {
   };
 
   return (
-    <div className="min-w-[800px]">
+    <div className="w-[800px]">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onHandleSubmit)}
