@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "../ImageList";
+import ImageList from "../ImageList";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
@@ -16,7 +16,7 @@ export const dynamicParams = true;
 //   };
 // }
 
-async function getMessage(id: number): Promise<Image> {
+async function getMessage(id: number): Promise<typeof ImageList> {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
