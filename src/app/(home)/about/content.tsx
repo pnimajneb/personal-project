@@ -1,5 +1,5 @@
 import React from "react";
-import { getImages } from "../../../../lib/imageService";
+import { getImages } from "../../../lib/imageService";
 
 export async function Content() {
   const aboutImage = await getImages();
